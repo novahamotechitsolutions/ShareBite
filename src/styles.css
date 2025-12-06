@@ -1,0 +1,18 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#fff;
+  --accent:#0078d4;
+  --muted:#666;
+}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); margin:0;}
+.auth-page{display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+.card{background:var(--card);padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);width:320px}
+.card h2{margin-top:0}
+.card label{display:block;margin:8px 0}
+.card input,.card select{width:100%;padding:8px;margin-top:6px;border:1px solid #ddd;border-radius:4px}
+.card button{width:100%;padding:10px;margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer}
+.muted{color:var(--muted);font-size:13px;margin-top:8px}
+.error{background:#ffefef;color:#900;padding:8px;border-radius:6px;margin-bottom:8px}
+.page{padding:20px}
+header{display:flex;justify-content:space-between;align-items:center}
+.btn-logout{margin-left:12px;padding:6px 10px;border-radius:6px;border:1px solid #ddd;cursor:pointer}

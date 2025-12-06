@@ -1,0 +1,120 @@
+/* Background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  background: #f3f3f3;
+  min-height: 100vh;
+}
+
+/* Card */
+.login-card {
+  width: 380px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Logo */
+.logo-img {
+  width: 70px;
+  margin-bottom: 5px;
+}
+
+.logo-title {
+  font-size: 28px;
+  margin: 0;
+  font-weight: bold;
+  color: #d9534f; /* ShareBite red */
+}
+
+.logo-subtitle {
+  margin: 5px 0 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Title */
+.login-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Inputs */
+.login-form label {
+  text-align: left;
+  width: 100%;
+  display: block;
+  margin: 12px 0 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  background: #f0f4ff;
+}
+
+.login-form input:focus {
+  border-color: #d9534f;
+  outline: none;
+  box-shadow: 0 0 4px rgba(217, 83, 79, 0.4);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #e38d00;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #cc7c00;
+}
+
+/* Links */
+.login-footer {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-footer a {
+  color: #d9534f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
