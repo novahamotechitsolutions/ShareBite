@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
 import "./Signup.css";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const { register } = useAuth();
 
   const [role, setRole] = useState("donor");
   const [form, setForm] = useState({
@@ -15,23 +13,24 @@ export default function Signup() {
     location: "",
   });
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    await register({ ...form, role });
-    navigate("/login"); // redirect after signup
+    // Save full user data including ROLE
+    const userData = { ...form, role };
+
+    localStorage.setItem("registeredUser", JSON.stringify(userData));
+
+    // Redirect to login page
+    navigate("/login");
   }
 
   return (
     <div className="signup-container">
       <div className="signup-card">
 
-        {/* Logo */}
-        <div className="logo">
-          
-          <h1 className="logo-title">ShareBite</h1>
-          <p className="logo-subtitle">Donate food, feed hope.</p>
-        </div>
+        <h1 className="logo-title">ShareBite</h1>
+        <p className="logo-subtitle">Donate food, feed hope.</p>
 
         {/* Role Tabs */}
         <div className="tabs">
@@ -57,10 +56,8 @@ export default function Signup() {
           </button>
         </div>
 
-        {/* Title */}
         <h2 className="title">Create your Account</h2>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="form">
 
           <label>Name</label>
@@ -72,7 +69,7 @@ export default function Signup() {
             required
           />
 
-          <label>Email or Phone</label>
+          <label>Email</label>
           <input
             type="email"
             placeholder="you@example.com"

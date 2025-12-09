@@ -16,18 +16,30 @@ export default function DonorDashboard() {
     photo: null,
   });
 
-  // 🔐 Redirect if not logged in — NO AuthContext needed
+  const [user, setUser] = useState(null);
+
+  // 🔐 Money Modal State
+  const [showMoneyModal, setShowMoneyModal] = useState(false);
+  const [moneyForm, setMoneyForm] = useState({
+    donorName: "",
+    mobile: "",
+    amount: "",
+    upi: "",
+  });
+
+  // Redirect if no login
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("loggedInUser");
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!loggedInUser) {
-      navigate("/login"); // block access & redirect to login
+      navigate("/login");
+    } else {
+      setUser(loggedInUser);
     }
   }, []);
 
-  // ✔ Handle Donation Submit
+  // Donation Form Submit
   function handleSubmit(e) {
     e.preventDefault();
-
     setShowSuccess(true);
 
     setTimeout(() => {
@@ -35,26 +47,61 @@ export default function DonorDashboard() {
     }, 3000);
   }
 
-  // ✔ Logout function (optional but recommended)
+  // Logout
   function handleLogout() {
     localStorage.removeItem("loggedInUser");
     navigate("/login");
   }
 
+  // Open Money Modal
+  function openMoneyModal() {
+    const savedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setMoneyForm({
+      ...moneyForm,
+      donorName: savedUser?.name || "",
+    });
+    setShowMoneyModal(true);
+  }
+
   return (
     <div className="dashboard-container">
 
-      {/* TOP BAR */}
-      <div className="top-bar">
-        <h2 className="dashboard-title">Donor Dashboard</h2>
-        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+      {/* NAVBAR */}
+      <div className="navbar">
+        <div className="nav-left">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/10470/10470439.png"
+            alt="logo"
+            className="logo-img"
+          />
+          <h1 className="nav-title">ShareBite</h1>
+        </div>
+
+        <div className="nav-right">
+          <button className="donate-btn" onClick={openMoneyModal}>
+            Donate Money
+          </button>
+
+          <span className="bell-icon">🔔</span>
+
+          <div className="profile-circle">
+            {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+          </div>
+
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </div>
+
+      {/* PAGE TITLE */}
+      <h2 className="dashboard-title">Donor Dashboard</h2>
 
       <div className="donation-card">
 
         <h3 className="section-title">Create a New Donation</h3>
 
-        {/* Food Source Tabs */}
+        {/* TABS */}
         <div className="source-tabs">
           {["Restaurant", "Catering", "Hostel", "Retailer", "Households", "Others"].map(source => (
             <button
@@ -67,9 +114,8 @@ export default function DonorDashboard() {
           ))}
         </div>
 
-        {/* Donation Form */}
+        {/* DONATION FORM */}
         <form onSubmit={handleSubmit}>
-
           <div className="form-row">
             <div className="form-group">
               <label>🍽 Food Type</label>
@@ -131,11 +177,78 @@ export default function DonorDashboard() {
         </form>
       </div>
 
-      {/* Success Toast */}
+      {/* SUCCESS TOAST */}
       {showSuccess && (
         <div className="toast-success">
           <strong>Submission Successful!</strong>
           <p>Your donation has been listed. An NGO will be notified.</p>
+        </div>
+      )}
+
+      {/* MONEY CONTRIBUTION MODAL */}
+      {showMoneyModal && (
+        <div className="modal-overlay">
+          <div className="money-modal">
+
+            <button className="modal-close" onClick={() => setShowMoneyModal(false)}>
+              ✖
+            </button>
+
+            <h2 className="modal-title">Donate Money</h2>
+            <p className="modal-subtitle">
+              Your monetary donations help us cover operational costs and reach more people.
+            </p>
+
+            <form className="modal-form">
+
+              <label>👤 Donor Name</label>
+              <input
+                type="text"
+                value={moneyForm.donorName}
+                onChange={(e) => setMoneyForm({ ...moneyForm, donorName: e.target.value })}
+                required
+              />
+
+              <label>📞 Mobile Number</label>
+              <input
+                type="text"
+                placeholder="+1 234 567 890"
+                value={moneyForm.mobile}
+                onChange={(e) => setMoneyForm({ ...moneyForm, mobile: e.target.value })}
+                required
+              />
+
+              <label>💵 Amount ($)</label>
+              <input
+                type="number"
+                placeholder="Enter amount"
+                value={moneyForm.amount}
+                onChange={(e) => setMoneyForm({ ...moneyForm, amount: e.target.value })}
+                required
+              />
+
+              <label>📱 To App Mobile Number</label>
+              <input
+                type="text"
+                placeholder="ShareBite UPI / Mobile"
+                value={moneyForm.upi}
+                onChange={(e) => setMoneyForm({ ...moneyForm, upi: e.target.value })}
+                required
+              />
+
+              <button
+                className="confirm-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("Contribution Submitted Successfully!");
+                  setShowMoneyModal(false);
+                }}
+              >
+                Confirm Donation
+              </button>
+
+            </form>
+          </div>
         </div>
       )}
     </div>
