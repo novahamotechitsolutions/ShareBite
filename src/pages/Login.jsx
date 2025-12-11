@@ -8,14 +8,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Phone & OTP states
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("+1");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-  // Country list WITH small flag images
+  // Country list
   const countryList = [
     { flag: "in", code: "+91", name: "India" },
     { flag: "us", code: "+1", name: "United States" },
@@ -38,53 +37,66 @@ export default function Login() {
   // SEND OTP
   const sendOtp = () => {
     if (!phone || phone.length < 6) {
-      alert("Enter a valid phone number.");
+      alert("Enter valid phone number");
       return;
     }
-
     setOtpSent(true);
     alert("OTP sent to " + countryCode + phone);
   };
 
-  // VERIFY OTP
+  // VERIFY OTP + REDIRECT BASED ON ROLE
   const verifyOtp = () => {
     const otpValue = otp.join("");
 
     if (otpValue.length !== 6) {
-      alert("Enter 6-digit OTP");
+      alert("Enter a 6-digit OTP");
       return;
     }
 
-    alert("OTP Verified Successfully!");
+    alert("OTP verified!");
 
     const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
     localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
 
-    navigate("/donor-dashboard");
+    // 🔥 ROLE-BASED NAVIGATION
+    if (savedUser.role === "ngo") {
+      navigate("/ngo-dashboard");
+    } else if (savedUser.role === "acceptor") {
+      navigate("/acceptor-dashboard");
+    } else {
+      navigate("/donor-dashboard");
+    }
   };
 
-  // EMAIL LOGIN (same)
-  const handleLogin = (e) => {
-    e.preventDefault();
+  // EMAIL LOGIN (same fix)
+const handleLogin = (e) => {
+  e.preventDefault();
 
-    const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
+  const users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
-    if (!savedUser) {
-      alert("User not found. Please sign up.");
-      return;
-    }
+  const savedUser = users.find(
+    (u) => u.email === email && u.password === password
+  );
 
-    if (savedUser.email !== email || savedUser.password !== password) {
-      alert("Invalid email or password.");
-      return;
-    }
+  if (!savedUser) {
+    alert("Invalid email or password.");
+    return;
+  }
 
-    alert("Login successful!");
-    localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
+  alert("Login successful!");
+  localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
+
+  // Redirect by role
+  if (savedUser.role === "ngo") {
+    navigate("/ngo-dashboard");
+  } else if (savedUser.role === "acceptor") {
+    navigate("/acceptor-dashboard");
+  } else {
     navigate("/donor-dashboard");
-  };
+  }
+};
 
-  // Handle OTP change
+
   const handleOtpChange = (value, index) => {
     if (!/^[0-9]?$/.test(value)) return;
 
@@ -127,12 +139,10 @@ export default function Login() {
             required
           />
 
-          {/* PHONE */}
+          {/* PHONE NUMBER WITH FLAG DROPDOWN */}
           <label>Phone Number</label>
 
           <div className="phone-row">
-
-            {/* CUSTOM FLAG DROPDOWN */}
             <div
               className="country-dropdown-box"
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -140,7 +150,6 @@ export default function Login() {
               <img
                 src={`https://flagcdn.com/24x18/${selectedCountry.flag}.png`}
                 className="flag-icon"
-                alt="flag"
               />
               <span>{selectedCountry.code}</span>
               <span>▼</span>
@@ -160,7 +169,6 @@ export default function Login() {
                     <img
                       src={`https://flagcdn.com/24x18/${c.flag}.png`}
                       className="flag-icon"
-                      alt="flag"
                     />
                     <span>{c.name}</span>
                     <span>({c.code})</span>
@@ -182,7 +190,7 @@ export default function Login() {
             </button>
           </div>
 
-          {/* OTP UI */}
+          {/* OTP INPUT */}
           {otpSent && (
             <div className="otp-section">
               <label>Enter 6-digit OTP</label>

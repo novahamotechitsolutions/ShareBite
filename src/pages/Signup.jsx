@@ -14,16 +14,19 @@ export default function Signup() {
   });
 
   function handleSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Save full user data including ROLE
-    const userData = { ...form, role };
+  let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
-    localStorage.setItem("registeredUser", JSON.stringify(userData));
+  const newUser = { ...form, role };
 
-    // Redirect to login page
-    navigate("/login");
-  }
+  users.push(newUser);
+
+  localStorage.setItem("registeredUsers", JSON.stringify(users));
+
+  alert("Signup Successful!");
+  navigate("/login");
+}
 
   return (
     <div className="signup-container">

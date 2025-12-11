@@ -1,0 +1,140 @@
+/* Container */
+.ngo-container {
+  background: #f7efe5;
+  min-height: 100vh;
+  padding: 0 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  padding: 15px 60px;
+  background: #f8f1e5;
+  border-bottom: 2px solid #e6d5c3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 40px;
+}
+
+.nav-title {
+  font-size: 28px;
+  color: #e66a00;
+  font-weight: bold;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donate-btn {
+  background: #fff2cc;
+  border: 1px solid #ffbb33;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bell-icon {
+  font-size: 22px;
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  background: #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.logout-btn {
+  background: #ff6666;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* TITLES */
+.ngo-title {
+  margin-top: 25px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.ngo-subtitle {
+  margin-top: 5px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* CARD STYLE */
+.donation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px #d6d6d6;
+}
+
+.source-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.meals-text {
+  font-size: 28px;
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.address {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+.distance {
+  margin: 8px 0;
+  font-size: 14px;
+  color: gray;
+}
+
+.accept-btn {
+  width: 100%;
+  background: #ffb300;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
