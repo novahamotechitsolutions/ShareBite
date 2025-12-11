@@ -33,6 +33,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard/ngo" element={<NgoDashboard />} />
       <Route path="/donor-dashboard" element={<DonorDashboard />} />
+      <Route path="/ngo-dashboard" element={<NgoDashboard />} />
 
       <Route path="/dashboard/acceptor" element={<AcceptorDashboard />} />
       <Route path="/dashboard/admin" element={<AdminDashboard />} />

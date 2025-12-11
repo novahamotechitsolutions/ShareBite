@@ -138,3 +138,112 @@
   font-size: 16px;
   cursor: pointer;
 }
+/* PROFILE MODAL */
+.profile-modal {
+  width: 350px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.profile-modal h2 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.profile-modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4caf50;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profile-circle {
+  background: #555;
+  color: rgb(181, 31, 31);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+/* Upload Section */
+.upload-section {
+  margin-top: 40px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.upload-btn {
+  display: inline-block;
+  background: #e08c00;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.uploaded-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.preview-img {
+  width: 150px;
+  height: 110px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+/* Top-left cancel button */
+.modal-cancel-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #d9534f;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-cancel-left:hover {
+  background: #b52b27;
+}
+
+/* Already existing close button (top-right) */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #999;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
