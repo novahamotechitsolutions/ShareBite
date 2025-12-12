@@ -1,0 +1,183 @@
+/* Login.css - modern warm design (Share Bites style) */
+
+:root{
+  --bg:#fbf6ea;
+  --card:#fff9f0;
+  --accent:#2f6b3a; /* deep green */
+  --accent-2:#d8682b; /* warm orange */
+  --muted:#eeddc9;
+  --input-bg:#fbf5ea;
+  --shadow: 0 12px 30px rgba(23,23,23,0.06);
+  --radius:24px;
+  --pill-radius:12px;
+}
+
+body {
+  background: linear-gradient(180deg, #fcf7ea 0%, #f6f1e6 100%);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#234227;
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* page container centers two cards horizontally in large screens;
+   for login view we show one card centered */
+.page-center {
+  width:100%;
+  max-width:1100px;
+  padding:28px;
+  display:flex;
+  gap:36px;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+/* big card */
+.card {
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:36px;
+  width:480px;
+  position:relative;
+  min-height:640px;
+  box-sizing:border-box;
+}
+
+/* optionally image area on left - but for login we mainly show one card */
+.brand-title {
+  text-align:center;
+  font-weight:800;
+  color:var(--accent);
+  font-size:48px;
+  margin:6px 0 10px;
+  letter-spacing:-1px;
+}
+
+.brand-sub {
+  text-align:center;
+  color:var(--accent-2);
+  font-weight:600;
+  margin-bottom:22px;
+}
+
+/* role pills */
+.role-pills {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin:8px 0 22px;
+}
+.role-pill {
+  background:var(--muted);
+  padding:10px 18px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  color:#2a4f33;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,0.03);
+}
+.role-pill.active {
+  background:linear-gradient(180deg,#d8eed1,#c9e6c1);
+  color:var(--accent);
+  transform:translateY(-1px);
+}
+
+/* section title */
+.section-title {
+  text-align:center;
+  color:var(--accent-2);
+  font-size:28px;
+  margin:18px 0 18px;
+  font-weight:700;
+}
+
+/* form */
+.form {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:6px;
+}
+.form label {
+  font-weight:600;
+  color:#2d4f3a;
+  margin-bottom:4px;
+  display:block;
+}
+.input {
+  background:var(--input-bg);
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.03);
+  padding:14px 16px;
+  font-size:16px;
+  outline:none;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,0.6);
+}
+.input:focus {
+  box-shadow:0 6px 18px rgba(45,75,45,0.06);
+  border-color:rgba(47,107,58,0.22);
+}
+
+/* buttons */
+.cta {
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+}
+.btn-main {
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:14px 42px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow: 0 10px 30px rgba(47,107,58,0.12);
+}
+.btn-alt {
+  background:var(--accent-2);
+  color:#fff;
+  padding:12px 28px;
+  border-radius:12px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* small link actions */
+.small-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+  color:#6b6b6b;
+}
+
+/* OTP input area */
+.otp-row {
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top:10px;
+}
+.resend-btn {
+  background:transparent;
+  border:1px dashed rgba(0,0,0,0.05);
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  color:#5b5b5b;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .page-center { padding:18px; flex-direction:column; align-items:center; }
+  .card { width:92%; min-height:520px; padding:28px; }
+  .brand-title { font-size:40px; }
+}
