@@ -1,4 +1,4 @@
-require('dotenv').config();
+﻿require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -24,3 +24,5 @@ mongoose.connect(MONGODB_URI, {
 }).catch(err => {
   console.error('MongoDB connection error:', err);
 });
+
+
