@@ -1,0 +1,8 @@
+﻿# Node & build
+node_modules/
+**/node_modules/
+.vite/
+.DS_Store
+
+# Optional: lockfiles if you don't want them tracked in certain folders
+# package-lock.json
