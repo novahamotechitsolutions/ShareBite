@@ -246,4 +246,27 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.close-x {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.close-x:hover {
+  opacity: 0.6;
+}
+
+.edit-title {
+  font-size: 22px;
+  font-weight: 600;
+}
 

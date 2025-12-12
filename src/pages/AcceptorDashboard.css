@@ -1,0 +1,361 @@
+/* ===========================
+   PAGE BASE STYLING
+=========================== */
+.acceptor-container {
+  font-family: "Poppins", sans-serif;
+  background: #f7efe5;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+.navbar {
+  width: 100%;
+  padding: 12px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+}
+
+.nav-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ff762e;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.donate-btn {
+  padding: 8px 16px;
+  background: #ffbd2f;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.bell-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile-circle {
+  width: 42px;
+  height: 42px;
+  background: #e2e2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profile-circle.thick {
+  border: 2px solid #ddd;
+}
+
+.logout-btn {
+  background: #d85e18;
+  border: none;
+  color: #150202;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ===========================
+   PAGE TITLE
+=========================== */
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 25px 40px;
+  color: #333;
+}
+
+/* ===========================
+   REQUEST CARD (CENTER BOX)
+=========================== */
+.request-card {
+  width: 420px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 30px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.request-card h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.request-card p {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.request-card label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+.request-card input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: #ffb400;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===========================
+   SUCCESS TOAST
+=========================== */
+.toast-success {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 15px 22px;
+  border-radius: 10px;
+  animation: fadeInOut 3s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ===========================
+   MODAL OVERLAY
+=========================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+/* ===========================
+   PROFILE MODAL
+=========================== */
+.profile-modal {
+  width: 420px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  position: relative;
+  animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.close-x {
+  font-size: 22px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Profile form */
+.profile-modal label {
+  margin-top: 10px;
+  display: block;
+  font-weight: 500;
+}
+
+.profile-modal input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Country dropdown */
+.phone-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.country-dropdown-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.flag-icon {
+  width: 22px;
+}
+
+.dropdown-list {
+  position: absolute;
+  background: white;
+  width: 180px;
+  max-height: 160px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-top: 5px;
+  z-index: 999;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f3f3f3;
+}
+
+.phone-input {
+  flex: 1;
+}
+
+/* Save button */
+.save-btn {
+  width: 100%;
+  margin-top: 18px;
+  background: #ffb400;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ===========================
+   OTP MODAL
+=========================== */
+.otp-modal {
+  width: 380px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.modal-close {
+  font-size: 22px;
+  background: none;
+  border: none;
+  float: right;
+  cursor: pointer;
+}
+
+.otp-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.otp-input {
+  width: 40px;
+  height: 45px;
+  text-align: center;
+  font-size: 22px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ffb400;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* ===========================
+   MONEY MODAL (QR CODE)
+=========================== */
+.money-modal {
+  width: 340px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.qr-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.qr-image {
+  width: 200px;
+  height: 200px;
+}

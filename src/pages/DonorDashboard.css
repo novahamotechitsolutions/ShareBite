@@ -66,7 +66,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   border: 1px solid #ddd;
   background: #eef2ff;
@@ -245,6 +245,7 @@ input {
   border: none;
   font-size: 20px;
   cursor: pointer;
+  color:#333
 }
 
 /* Titles */
@@ -288,5 +289,28 @@ input {
   border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.close-x {
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.close-x:hover {
+  opacity: 0.6;
+}
+
+.edit-title {
+  font-size: 22px;
+  font-weight: 600;
 }
 

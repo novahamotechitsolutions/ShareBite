@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
 
 export default function Signup() {
@@ -21,7 +21,6 @@ export default function Signup() {
     countryCode: "+91",
   });
 
-  // 30+ countries with flags (small set, extendable)
   const countryList = [
     { flag: "in", code: "+91", name: "India" },
     { flag: "us", code: "+1", name: "United States" },
@@ -58,33 +57,26 @@ export default function Signup() {
   const selectedCountry =
     countryList.find((c) => c.code === form.countryCode) || countryList[0];
 
-  // Simulate sending OTP (replace with real OTP service when ready)
   const sendOtp = () => {
     if (!form.phone || form.phone.trim().length < 6) {
       alert("Enter a valid phone number.");
       return;
     }
-    // In production, call backend/Firebase to send OTP to `${form.countryCode}${form.phone}`
     setOtp(["", "", "", "", "", ""]);
     setOtpSent(true);
-    // focus first OTP input after a small delay
     setTimeout(() => otpInputsRef.current[0]?.focus(), 100);
     alert(`Simulated: OTP sent to ${form.countryCode} ${form.phone}`);
   };
 
-  // handle OTP input change
   const handleOtpChange = (val, idx) => {
     if (!/^[0-9]?$/.test(val)) return;
     const nextOtp = [...otp];
     nextOtp[idx] = val;
     setOtp(nextOtp);
 
-    if (val && idx < 5) {
-      otpInputsRef.current[idx + 1]?.focus();
-    }
+    if (val && idx < 5) otpInputsRef.current[idx + 1]?.focus();
   };
 
-  // Verify OTP then save user
   const verifyOtpAndRegister = () => {
     const code = otp.join("");
     if (code.length !== 6) {
@@ -92,26 +84,19 @@ export default function Signup() {
       return;
     }
 
-    // NOTE: This is simulated verification.
-    // Replace with real verification logic in production.
-    // On success -> store user
     const users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-
-    // Prevent duplicate email
     const exists = users.find((u) => u.email === form.email);
     if (exists) {
       alert("Email already registered. Please login.");
       return;
     }
 
-    const phoneFull = `${form.countryCode} ${form.phone}`.trim();
-
     const newUser = {
       name: form.name,
       email: form.email,
       password: form.password,
       location: form.location,
-      phone: phoneFull,
+      phone: `${form.countryCode} ${form.phone}`,
       role,
     };
 
@@ -122,20 +107,14 @@ export default function Signup() {
     navigate("/login");
   };
 
-  // Regular form submit is disabled (we require OTP first)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!otpSent) {
       alert("Please send OTP and verify before registering.");
       return;
     }
-    // If OTP already entered fully, try verifying & register
-    const code = otp.join("");
-    if (code.length === 6) {
-      verifyOtpAndRegister();
-    } else {
-      alert("Enter the 6-digit OTP to finish registration.");
-    }
+    if (otp.join("").length === 6) verifyOtpAndRegister();
+    else alert("Enter the 6-digit OTP to finish registration.");
   };
 
   return (
@@ -208,21 +187,18 @@ export default function Signup() {
           />
 
           <label>Phone Number</label>
-
           <div className="phone-row">
             <div
               className="country-dropdown-box"
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              role="button"
-              tabIndex={0}
             >
               <img
                 src={`https://flagcdn.com/24x18/${selectedCountry.flag}.png`}
                 className="flag-icon"
-                alt={selectedCountry.name}
+                alt=""
               />
-              <span className="code-text">{selectedCountry.code}</span>
-              <span className="caret">▾</span>
+              <span>{selectedCountry.code}</span>
+              <span>▾</span>
             </div>
 
             {dropdownOpen && (
@@ -239,10 +215,9 @@ export default function Signup() {
                     <img
                       src={`https://flagcdn.com/24x18/${c.flag}.png`}
                       className="flag-icon"
-                      alt={c.name}
+                      alt=""
                     />
-                    <span className="country-name">{c.name}</span>
-                    <span className="country-code">({c.code})</span>
+                    <span>{c.name}</span> <span>({c.code})</span>
                   </div>
                 ))}
               </div>
@@ -257,16 +232,11 @@ export default function Signup() {
               required
             />
 
-            <button
-              type="button"
-              className="verify-btn"
-              onClick={sendOtp}
-            >
+            <button type="button" className="verify-btn" onClick={sendOtp}>
               Send OTP
             </button>
           </div>
 
-          {/* OTP inputs appear after sending OTP */}
           {otpSent && (
             <div className="otp-section">
               <label>Enter 6-digit OTP</label>
@@ -274,7 +244,6 @@ export default function Signup() {
                 {otp.map((d, i) => (
                   <input
                     key={i}
-                    id={`otp-${i}`}
                     maxLength={1}
                     ref={(el) => (otpInputsRef.current[i] = el)}
                     className="otp-input"
@@ -284,24 +253,9 @@ export default function Signup() {
                 ))}
               </div>
 
-              <div style={{ display: "flex", gap: 8 }}>
-                <button
-                  type="button"
-                  className="register-btn"
-                  onClick={verifyOtpAndRegister}
-                >
-                  Verify & Register
-                </button>
-                <button
-                  type="button"
-                  className="secondary-btn"
-                  onClick={() => {
-                    setOtp(["", "", "", "", "", ""]);
-                  }}
-                >
-                  Clear OTP
-                </button>
-              </div>
+              <button type="button" className="register-btn" onClick={verifyOtpAndRegister}>
+                Verify & Register
+              </button>
             </div>
           )}
 
@@ -311,6 +265,15 @@ export default function Signup() {
             </button>
           )}
         </form>
+
+        {/* ⭐ ADDED FOOTER BELOW SIGNUP ⭐ */}
+        <div className="signup-footer">
+          Already have an account?{" "}
+          <Link to="/login" className="login-link">
+            Login here
+          </Link>
+        </div>
+
       </div>
     </div>
   );

@@ -125,3 +125,19 @@
     transform: translateY(0);
   }
 }
+.signup-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #0f0d0dcc;
+}
+
+.signup-footer .login-link {
+  color: #ac5a20;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-footer .login-link:hover {
+  text-decoration: underline;
+}
